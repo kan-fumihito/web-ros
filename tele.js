@@ -11,12 +11,7 @@ var ws;
         console.log(e);
     }
     ws.onmessage = function(e) {
-        if (e.data == "You") {
-            document.getElementById("turn").innerText = e.data;
-            window.setTimeout(function() {
-                document.getElementById("turn").innerText = "Pause";
-            }, 1000 * 10);
-        }
+        document.getElementById("turn").innerText = e.data;
         console.log(e.data);
     }
     ws.onclose = function(e) {
