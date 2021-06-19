@@ -1,17 +1,8 @@
 var ws;
 (function() {
-    ws = new WebSocket("ws://18.183.9.119:8080");
+    ws = new WebSocket("ws://localhost:8080");
     ws.onopen = function(e) {
         document.getElementById("msg").innerText = "Connection Start";
-        var advertise = {
-            "op": "advertise",
-            "topic": "/leds",
-            "type": "raspimouse_ros_2/LedValues",
-        };
-
-        ws.send(JSON.stringify(advertise));
-
-
     }
     ws.onerror = function(e) {
         document.getElementById("msg").innerText = "Error";
@@ -23,6 +14,12 @@ var ws;
 
     console.log("Setup");
 }());
+
+var count = 0;
+
+function send() {
+    ws.send(count++);
+}
 
 function send_led() {
     var leds = document.leds.leds;
