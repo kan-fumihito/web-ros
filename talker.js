@@ -1,15 +1,25 @@
 var ws;
-(function () {
+(function() {
     ws = new WebSocket("ws://192.168.0.20:9090");
-    ws.onopen = function (e) {
+    ws.onopen = function(e) {
         document.getElementById("msg").innerText = "Connection Start";
     }
-    ws.onerror = function (e) {
-        document.getElementById("msg").innerText = "Connection Error";
+    ws.onerror = function(e) {
+        document.getElementById("msg").innerText = "Error";
+        console.log(e);
     }
-    ws.onclose = function (e) {
+    ws.onclose = function(e) {
         document.getElementById("msg").innerText = "Connection End";
     }
+
+    var advertise = {
+        "op": "advertise",
+        "topic": "/leds",
+        "type": "raspimouse_ros_2/LedValues",
+    };
+
+    ws.send(JSON.stringify(advertise));
+
     console.log("Setup");
 }());
 
@@ -17,7 +27,7 @@ function send_led() {
     var leds = document.leds.leds;
     var msg = {
         "op": "publish",
-        "topic": "leds",
+        "topic": "/leds",
         "msg": {
             "left_side": leds[0].checked ? 1 : 0,
             "left_forward": leds[1].checked ? 1 : 0,
@@ -40,22 +50,22 @@ function send_motor() {
     ws.send(JSON.stringify(msg));
 }
 
-function motor_on(){
+function motor_on() {
     var call = {
         "op": "call_service",
         "service": "motor_on",
         "args": {},
         "id": "5000"
-    };   
+    };
     ws.send(JSON.stringify(call));
 }
 
-function motor_on(){
+function motor_on() {
     var call = {
         "op": "call_service",
         "service": "motor_off",
         "args": {},
         "id": "5000"
-    };   
+    };
     ws.send(JSON.stringify(call));
 }
