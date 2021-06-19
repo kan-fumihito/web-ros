@@ -10,8 +10,6 @@ var ws;
         };
 
         ws.send(JSON.stringify(advertise));
-
-
     }
     ws.onerror = function(e) {
         document.getElementById("msg").innerText = "Error";
