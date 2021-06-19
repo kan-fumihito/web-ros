@@ -1,6 +1,6 @@
 var ws;
 (function() {
-    ws = new WebSocket("ws://192.168.0.20:9090");
+    ws = new WebSocket("ws://18.183.9.119:9090");
     ws.onopen = function(e) {
         document.getElementById("msg").innerText = "Connection Start";
     }
@@ -29,10 +29,10 @@ function send_led() {
         "op": "publish",
         "topic": "/leds",
         "msg": {
-            "left_side": leds[0].checked ? 1 : 0,
-            "left_forward": leds[1].checked ? 1 : 0,
-            "right_forward": leds[2].checked ? 1 : 0,
-            "right_side": leds[3].checked ? 1 : 0,
+            "left_side": leds[0].checked,
+            "left_forward": leds[1].checked,
+            "right_forward": leds[2].checked,
+            "right_side": leds[3].checked,
         }
     };
     console.log(msg);
