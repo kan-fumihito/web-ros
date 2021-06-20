@@ -5,13 +5,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tele.css">
     <title>Document</title>
 </head>
 
 <body>
 
     <p id="turn"></p>
-    <button onclick="send()">SEND</button>
+    <div class="ctl">
+        <span id="lu" onclick="send(0)"></span>
+        <span id="mu" onclick="send(1)"></span>
+        <span id="ru" onclick="send(2)"></span>
+    </div>
+    <div class="ctl">
+        <span id="lm" onclick="send(3)"></span>
+        <span id="mm" onclick="send(4)"></span>
+        <span id="rm" onclick="send(5)"></span>
+    </div>
+    <div class="ctl">
+        <span id="ld" onclick="send(6)"></span>
+        <span id="md" onclick="send(7)"></span>
+        <span id="rd" onclick="send(8)"></span>
+    </div>
     <p id="msg">
 
     </p>

@@ -1,0 +1,33 @@
+span {
+    padding: 30px;
+    margin: 10px;
+    float: left;
+    background-color: aqua;
+}
+
+#mm {
+    padding: 30px;
+    margin: 10px;
+    float: left;
+    background-color: rgb(255, 0, 136);
+}
+
+#lu {
+    border-top-left-radius: 20%;
+}
+
+#ru {
+    border-top-right-radius: 20%;
+}
+
+#ld {
+    border-bottom-left-radius: 20%;
+}
+
+#rd {
+    border-bottom-right-radius: 20%;
+}
+
+.ctl {
+    clear: both;
+}
