@@ -1,0 +1,17 @@
+{
+    "topic": "/csi_cam_0/image_raw",
+    "msg": {
+        "encoding": "rgb8",
+        "height": 480,
+        "header": {
+            "stamp": { "secs": 1624322420, "nsecs": 616705628 },
+            "frame_id": "/csi_cam_0_link",
+            "seq": 6203
+        },
+        "step": 1920,
+        "data": "",
+        "width": 640,
+        "is_bigendian": 0
+    },
+    "op": "publish"
+}

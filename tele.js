@@ -1,30 +1,44 @@
 var ws;
+var camera = document.getElementById('camera').getContext('2d');
+var img = camera.createImageData(640, 480);
 (function() {
     ws = new WebSocket("ws://18.183.9.119:8080");
     ws.onopen = function(e) {
         document.getElementById("turn").innerText;
         document.getElementById("msg").innerText = "Connection Start";
-        var advertise = {
-            "op": "advertise",
-            "topic": "/cmd_vel",
-            "type": "geometry_msgs/Twist",
-        };
-
-        ws.send(JSON.stringify(advertise));
     }
     ws.onerror = function(e) {
         document.getElementById("msg").innerText = "Error";
         console.log(e);
     }
     ws.onmessage = function(e) {
-        document.getElementById("turn").innerText = e.data;
-        console.log(e.data);
+        switch (e.data) {
+            case "You":
+            case "Pause":
+                document.getElementById("turn").innerText = e.data;
+                break;
+            default:
+                var data = JSON.parse(e.data);
+                for (var i = 0; i < 480; i++) {
+                    for (var j = 0, k = 0; k < 1920; j += 4, k += 3) {
+                        img.data[i * j] = data.msg.data[i * k];
+                        img.data[i * j + 1] = data.msg.data[i * k + 1];
+                        img.data[i * j + 2] = data.msg.data[i * k + 2];
+                        img.data[i * j + 3] = 0;
+                    }
+                }
+                camera.putImageData(img, 0, 0);
+
+        }
+
     }
     ws.onclose = function(e) {
         document.getElementById("msg").innerText = "Connection End";
     }
 
     console.log("Setup");
+
+
 }());
 
 var count = 0;
@@ -64,7 +78,7 @@ function send(idx) {
             angular: {
                 x: 0,
                 y: 0,
-                z: az[idx] * 0.25
+                z: az[idx] * 0.5
             },
             linear: {
                 x: lx[idx] * 0.125,
