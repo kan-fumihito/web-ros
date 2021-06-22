@@ -19,17 +19,18 @@ var imgData = camera.createImageData(640, 480);
                 break;
             default:
                 var data = JSON.parse(e.data);
+                var rawData = atob(data.msg.data);
                 console.log(data.msg.step);
                 for (var i = 0; i < 480; i++) {
                     for (var j = 0; j < 640; j++) {
 
-                        imgData.data[j * 4 + i * imgData.width * 4] = data.msg.data[j * 3 + imgData.width * 3];
+                        imgData.data[j * 4 + i * imgData.width * 4] = rawData[j * 3 + imgData.width * 3];
+                        console.log(data.msg.data[j * 3 + imgData.width * 3]);
+                        imgData.data[1 + j * 4 + i * imgData.width * 4] = rawData[1 + j * 3 + imgData.width * 3];
 
-                        imgData.data[1 + j * 4 + i * imgData.width * 4] = data.msg.data[1 + j * 3 + imgData.width * 3];
+                        imgData.data[2 + j * 4 + i * imgData.width * 4] = rawData[2 + j * 3 + imgData.width * 3];
 
-                        imgData.data[2 + j * 4 + i * imgData.width * 4] = data.msg.data[2 + j * 3 + imgData.width * 3];
-
-                        imgData.data[3 + j * 4 + i * imgData.width * 4] = 255;
+                        imgData.data[3 + j * 4 + i * imgData.width * 4] = 0;
 
                     }
                 }
