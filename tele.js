@@ -23,16 +23,12 @@ var imgData = camera.createImageData(640, 480);
                 for (var i = 0; i < 480; i++) {
                     for (var j = 0; j < 640; j++) {
 
-                        // 赤成分
-                        imgData.data[j * 4 + i * imgData.width * 4] = j * 8;
+                        imgData.data[j * 4 + i * imgData.width * 4] = data.msg.data[j * 3 + imgData.width * 3];
 
-                        // 緑成分
-                        imgData.data[1 + j * 4 + i * imgData.width * 4] = 255 - (i * 8);
+                        imgData.data[1 + j * 4 + i * imgData.width * 4] = data.msg.data[1 + j * 3 + imgData.width * 3];
 
-                        // 青成分
-                        imgData.data[2 + j * 4 + i * imgData.width * 4] = i * 8;
+                        imgData.data[2 + j * 4 + i * imgData.width * 4] = data.msg.data[2 + j * 3 + imgData.width * 3];
 
-                        // アルファ成分
                         imgData.data[3 + j * 4 + i * imgData.width * 4] = 255;
 
                     }
