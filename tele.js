@@ -1,6 +1,6 @@
 var ws;
 var camera = document.getElementById('camera').getContext('2d');
-var img = camera.createImageData(640, 480);
+var imgData = camera.createImageData(640, 480);
 (function() {
     ws = new WebSocket("ws://18.183.9.119:8080");
     ws.onopen = function(e) {
@@ -37,7 +37,7 @@ var img = camera.createImageData(640, 480);
 
                     }
                 }
-                camera.putImageData(img, 0, 0);
+                camera.putImageData(imgData, 0, 0);
                 break;
         }
     }
