@@ -21,11 +21,20 @@ var img = camera.createImageData(640, 480);
                 var data = JSON.parse(e.data);
                 console.log(data.msg.step);
                 for (var i = 0; i < 480; i++) {
-                    for (var j = 0, k = 0; k < 1920; j += 4, k += 3) {
-                        img.data[i * j] = data.msg.data[i * k];
-                        img.data[i * j + 1] = data.msg.data[i * k + 1];
-                        img.data[i * j + 2] = data.msg.data[i * k + 2];
-                        img.data[i * j + 3] = 0;
+                    for (var j = 0; j < 640; j++) {
+
+                        // 赤成分
+                        imgData.data[j * 4 + i * imgData.width * 4] = j * 8;
+
+                        // 緑成分
+                        imgData.data[1 + j * 4 + i * imgData.width * 4] = 255 - (i * 8);
+
+                        // 青成分
+                        imgData.data[2 + j * 4 + i * imgData.width * 4] = i * 8;
+
+                        // アルファ成分
+                        imgData.data[3 + j * 4 + i * imgData.width * 4] = 255;
+
                     }
                 }
                 camera.putImageData(img, 0, 0);
