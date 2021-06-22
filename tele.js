@@ -1,6 +1,6 @@
 var ws;
-var camera = document.getElementById('camera').getContext('2d');
-var imgData = camera.createImageData(640, 480);
+//var camera = document.getElementById('camera').getContext('2d');
+//var imgData = camera.createImageData(640, 480);
 (function() {
     //ws = new WebSocket("ws://18.183.9.119:8080");
     ws = new WebSocket("ws://10.6.18.130:8080");
@@ -20,9 +20,10 @@ var imgData = camera.createImageData(640, 480);
                 break;
             default:
                 var data = JSON.parse(e.data);
-                var rawData = atob(data.msg.data);
-                console.log(data.msg.step);
-                for (var i = 0; i < 480; i++) {
+    		            
+		//var rawData = atob(data.msg.data);
+                //console.log(data.msg.step);
+                /*for (var i = 0; i < 480; i++) {
                     for (var j = 0; j < 640; j++) {
 
                         imgData.data[j * 4 + i * imgData.width * 4] = rawData[j * 3 + i * imgData.width * 3];
@@ -34,20 +35,20 @@ var imgData = camera.createImageData(640, 480);
                         imgData.data[3 + j * 4 + i * imgData.width * 4] = 255;
 
                     }
-                }
-		console.log(rawData);
-     
-		blob = new Blob([rawData], {type:'application/octet-stream'});
-		a = document.createElement("a");
-			a.href=URL.createObjectURL(blob);
-			document.body.appendChild(a);
-			a.download='image.raw';
-			a.click();
-			document.body.removeChild(a);
-			URL.revokeObjectURL(a.href);
+                }*/
+		console.log(data);
+    		imgData = data.msg.data; 
+		//blob = new Blob([rawData], {type:'application/octet-stream'});
+		//a = document.createElement("a");
+		//	a.href=URL.createObjectURL(blob);
+		//	document.body.appendChild(a);
+		//	a.download='image.raw';
+		//	a.click();
+		//	document.body.removeChild(a);
+		//	URL.revokeObjectURL(a.href);
 
-		camera.putImageData(imgData, 0, 0);
-		ws.close();
+		//camera.putImageData(imgData, 0, 0);
+		//ws.close();
 		break;
         }
     }
