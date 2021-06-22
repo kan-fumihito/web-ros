@@ -19,6 +19,7 @@ var img = camera.createImageData(640, 480);
                 break;
             default:
                 var data = JSON.parse(e.data);
+                console.log(data.msg.step);
                 for (var i = 0; i < 480; i++) {
                     for (var j = 0, k = 0; k < 1920; j += 4, k += 3) {
                         img.data[i * j] = data.msg.data[i * k];
@@ -28,9 +29,8 @@ var img = camera.createImageData(640, 480);
                     }
                 }
                 camera.putImageData(img, 0, 0);
-
+                break;
         }
-
     }
     ws.onclose = function(e) {
         document.getElementById("msg").innerText = "Connection End";
