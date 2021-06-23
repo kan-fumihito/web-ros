@@ -1,6 +1,6 @@
 var ws;
 (function() {
-    ws = new WebSocket("ws://18.183.9.119:8080");
+    ws = new WebSocket("ws://35.75.89.77:8080");
     ws.onopen = function(e) {
         document.getElementById("msg").innerText = "Connection Start";
         var advertise = {

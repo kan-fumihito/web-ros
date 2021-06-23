@@ -1,6 +1,6 @@
 var ws;
 (function() {
-    ws = new WebSocket("ws://18.183.9.119:8080");
+    ws = new WebSocket("ws://35.75.89.77:8080");
     ws.onopen = function(e) {
         document.getElementById("turn").innerText;
         document.getElementById("msg").innerText = "Connection Start";
@@ -18,7 +18,7 @@ var ws;
             default:
                 var data = JSON.parse(e.data);
                 console.log(data.topic);
-                document.getElementById("image").src = "data:image/png;base64," + data.msg.data;
+                document.getElementById("image").src = "data:image/jpeg;base64," + data.msg.data;
                 break;
         }
     }
